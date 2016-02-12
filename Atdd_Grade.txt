@@ -13,7 +13,7 @@ Grade A
 
 *** Keywords ***
 Go to grade page
-	Open Browser    htpp://www.clockupstudio.com/demo/gradejs
+	Open Browser    http://www.clockupstudio.com/demo/gradejs
 Fill score
     [Arguments]    ${score}
 	Input Text    score    ${score}
