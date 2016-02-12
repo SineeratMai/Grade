@@ -1,15 +1,15 @@
 *** Settings ***
 Library    Selenium2Library
 Library    BuiltIn
-
+Suite setup    Go to grade page
+Suite teardown    Close browser
 
 *** Variable ***
 
 *** Test case ***
 Grade A
-	Go to grade page
 	Fill score    80    #${score}
-	Check grade    80
+	Check grade
 
 *** Keywords ***
 Go to grade page
@@ -20,9 +20,9 @@ Fill score
 	Click Button    submit
 Check grade
 	${chkscore} =    Get Text    score
-	Run keyword if    ${chkscore} >= 80    Wait Until Page Contains    Your grade is A
-	...    Else if    ${chkscore} >= 70    Wait Until Page Contains    Your grade is B
-	...    Else if    ${chkscore} >= 60    Wait Until Page Contains    Your grade is C
-	...    Else if    ${chkscore} >= 50    Wait Until Page Contains    Your grade is D
-	...    Else if    ${chkscore} >= 0    Wait Until Page Contains    Your grade is F
+	Run keyword if    '${chkscore}' >= '80'    Wait Until Page Contains    Your grade is A
+	...    Else if    '${chkscore}' >= '70'    Wait Until Page Contains    Your grade is B
+	...    Else if    '${chkscore}' >= '60'    Wait Until Page Contains    Your grade is C
+	...    Else if    '${chkscore}' >= '50'    Wait Until Page Contains    Your grade is D
+	...    Else if    '${chkscore}' >= '0'    Wait Until Page Contains    Your grade is F
 	...    Else    Page should Contain    Your grade is F
