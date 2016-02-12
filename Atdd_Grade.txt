@@ -1,0 +1,24 @@
+*** Settings ***
+Library    Selenium2Library
+Library    BuiltIn
+
+
+*** Variable ***
+
+*** Test case ***
+Grade A
+	Go to grade page
+	Fill score    80    #${score}
+	Check grade    80
+
+*** Keywords ***
+Go to grade page
+	Open Browser    htpp://www.clockupstudio.com/demo/gradejs
+Fill score
+    [Arguments]    ${score}
+	Input Text    score    ${score}
+	Click Button    submit
+Check grade
+	[Arguments]    ${score}
+	Run keyword if    ${score} >= 80    Wait Until Page Contains    Your grade is A
+	# ...Else if    
