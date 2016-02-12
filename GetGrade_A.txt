@@ -1,0 +1,23 @@
+*** Settings ***
+Library    Selenium2Library
+Library    BuiltIn
+Suite setup    Go to grade page
+Suite teardown    Close browser
+
+*** Variable ***
+
+*** Test case ***
+Grade A
+	Fill score    80    #${score}
+	Check grade
+
+*** Keywords ***
+Go to grade page
+	Open Browser    http://www.clockupstudio.com/demo/gradejs
+Fill score
+    [Arguments]    ${score}
+	Input Text    score    ${score}
+	Click Button    submit
+Check grade
+	${chkscore} =    Get Text    score
+	Wait Until Page Contains    Your grade is A
