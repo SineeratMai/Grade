@@ -1,0 +1,14 @@
+*** Setting ***
+Library    Selenium2Library
+
+*** Keywords ***
+Go to grade page
+	Open Browser    http://www.clockupstudio.com/demo/gradejs
+Fill score
+    [Arguments]    ${score}
+	Input Text    score    ${score}
+	Click Button    submit
+Check grade
+	[Arguments]    ${grade}
+	${chkscore} =    Get Text    score
+	Wait Until Page Contains    Your grade is ${grade}
