@@ -1,23 +1,28 @@
 *** Settings ***
-Library    Selenium2Library
-Library    BuiltIn
+Resource    Resources/GradeSuite.txt
 Suite setup    Go to grade page
 Suite teardown    Close browser
+Test template    Check grade flow
 
 *** Variable ***
 
 *** Test case ***
-Grade A
-	Fill score    80    #${score}
-	Check grade
+TC1 Grade A    100    A
+TC2 Grade A    90    A
+TC3 Grade A    80    A
+TC4 Grade B    79    B
+TC5 Grade B    70    B
+TC6 Grade B    69    C
+TC7 Grade B    60    C
+# TC8 Grade B    59    D
+# TC9 Grade B    50    D
+# TC10 Grade F    49    D
+# TC11 Grade F    0    D
+# TC12 Grade F    0.5    D
 
 *** Keywords ***
-Go to grade page
-	Open Browser    http://www.clockupstudio.com/demo/gradejs
-Fill score
-    [Arguments]    ${score}
-	Input Text    score    ${score}
-	Click Button    submit
-Check grade
-	${chkscore} =    Get Text    score
-	Wait Until Page Contains    Your grade is A
+Check grade flow
+	[Arguments]    ${score}    ${grade}
+	Fill score    ${score}
+	Check grade   ${grade}
+
